@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Você recebeu um presente!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* Paleta de Cores Steam */
+        :root {
+            --steam-dark-blue: #1b2838;
+            --steam-light-blue: #2a475e;
+            --steam-bright-blue: #66c0f4;
+            --steam-bg-gradient: radial-gradient(at top left, #2a475e 0%, #1b2838 100%);
+            --steam-text-grey: #c6d4df;
+            --steam-btn-green: linear-gradient(to right, #75b022 0%, #588a1b 100%);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Motiva Sans", Sans-serif, Arial;
+            background: var(--steam-bg-gradient);
+            background-attachment: fixed;
+            color: var(--steam-text-grey);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 40px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .game-card {
+            background: #101822;
+            padding: 15px;
+            border-radius: 3px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+        }
+
+        .congrats-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .btn-redeem {
+            background: var(--steam-btn-green);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 2px;
+            display: inline-block;
+            transition: filter 0.2s, transform 0.1s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-redeem:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        .btn-redeem:active {
+            transform: scale(0.98);
+        }
+
+        .footer-logo {
+            margin-top: 20px;
+            opacity: 0.5;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Um presente chegou!</h1>
+    
+    <div class="game-card">
+        <img src="https://mms.businesswire.com/media/20250716265682/en/2524703/4/FC26_SE_Cover_16x9.jpg" alt="Capa do Jogo">
+    </div>
+
+    <div class="congrats-text">
+        Parabéns! Você acaba de ganhar o jogo <br>
+        <strong style="color: white; font-size: 22px;">EA FC 26</strong>!
+    </div>
+
+    <a href="#" class="btn-redeem" onclick="lancarConfete()">ATIVAR JOGO AGORA</a>
+
+    <div class="footer-logo">
+        Enviado por Daniel Da Silva
+    </div>
+</div>
+
+<script>
+    function lancarConfete() {
+        // Explosão de confete lateral (estilo festa)
+        var count = 200;
+        var defaults = {
+            origin: { y: 0.7 },
+            colors: ['#66c0f4', '#ffffff', '#75b022'] // Cores: Azul Steam, Branco, Verde
+        };
+
+        function fire(particleRatio, opts) {
+            confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio)
+            }));
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }
+
+    // Dispara automaticamente quando carregar a página
+    window.onload = function() {
+        setTimeout(lancarConfete, 500); // Meio segundo de atraso para dar emoção
+    };
+</script>
+
+</body>
+</html>
